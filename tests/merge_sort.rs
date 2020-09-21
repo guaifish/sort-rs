@@ -1,3 +1,4 @@
+use rand::prelude::*;
 use sorted::MergeSort;
 
 #[test]
@@ -28,4 +29,14 @@ fn test_merge_sort_slice() {
     s.merge_sort();
     let expected = [1, 2, 3, 4, 5, 6, 7, 8];
     assert_eq!(*s, expected);
+}
+
+#[test]
+fn test_merge_sort_rand() {
+    let mut rng = rand::thread_rng();
+    let mut nums: Vec<i32> = (1..82).collect();
+    let expected = nums.clone();
+    nums.shuffle(&mut rng);
+    nums.merge_sort();
+    assert_eq!(nums, expected);
 }

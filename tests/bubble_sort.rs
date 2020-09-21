@@ -1,3 +1,4 @@
+use rand::prelude::*;
 use sorted::BubbleSort;
 
 #[test]
@@ -28,4 +29,14 @@ fn test_bubble_sort_slice() {
     s.bubble_sort();
     let expected = [1, 2, 3, 4, 5, 6, 7, 8];
     assert_eq!(*s, expected);
+}
+
+#[test]
+fn test_selection_sort_rand() {
+    let mut rng = rand::thread_rng();
+    let mut nums: Vec<i32> = (1..82).collect();
+    let expected = nums.clone();
+    nums.shuffle(&mut rng);
+    nums.bubble_sort();
+    assert_eq!(nums, expected);
 }

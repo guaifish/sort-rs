@@ -9,14 +9,21 @@ impl<T: Ord + Copy> MergeSort<T> for [T] {
             let mid = len / 2;
             self[..mid].merge_sort();
             self[mid..].merge_sort();
+            let mut c = 0;
             let mut l = 0;
             let mut r = mid;
             while l < r && r < len {
-                if self[r] < self[l] {
-                    self[l..=r].rotate_right(1);
+                while r < len && self[r] < self[l] {
                     r += 1;
+                    c += 1;
                 }
-                l += 1;
+                if c == 0 {
+                    l += 1;
+                } else {
+                    self[l..r].rotate_right(c);
+                    l += c;
+                    c = 0;
+                }
             }
         }
     }

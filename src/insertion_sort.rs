@@ -4,14 +4,14 @@ pub trait InsertionSort<T: Ord + Copy> {
 
 impl<T: Ord + Copy> InsertionSort<T> for [T] {
     fn insertion_sort(&mut self) {
-        for i in 0..self.len() {
-            let tmp = self[i];
-            let mut index = i;
-            while index > 0 && self[index - 1] > tmp {
-                self[index] = self[index - 1];
-                index -= 1;
+        for i in 1..self.len() {
+            if self[i] < self[i - 1] {
+                let mut j = i;
+                while j > 0 && self[j - 1] > self[i] {
+                    j -= 1;
+                }
+                self[j..=i].rotate_right(1);
             }
-            self[index] = tmp;
         }
     }
 }

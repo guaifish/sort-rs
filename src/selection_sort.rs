@@ -5,14 +5,17 @@ pub trait SelectionSort<T: Ord + Copy> {
 impl<T: Ord + Copy> SelectionSort<T> for [T] {
     #[inline]
     fn selection_sort(&mut self) {
-        for i in 0..self.len() {
+        let len = self.len();
+        for i in 0..len {
             let mut k = i;
-            for j in (i + 1)..self.len() {
-                if self[k] >= self[j] {
+            for j in (i + 1)..len {
+                if self[j] < self[k] {
                     k = j;
                 }
             }
-            self.swap(i, k);
+            if i < k {
+                self.swap(i, k);
+            }
         }
     }
 }

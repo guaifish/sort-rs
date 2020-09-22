@@ -6,15 +6,13 @@ impl<T: Ord + Copy> SelectionSort<T> for [T] {
     #[inline]
     fn selection_sort(&mut self) {
         for i in 0..self.len() {
-            let mut index = i;
+            let mut k = i;
             for j in (i + 1)..self.len() {
-                if self[j] < self[index] {
-                    index = j;
+                if self[j] < self[k] {
+                    k = j;
                 }
             }
-            let tmp = self[index];
-            self[index] = self[i];
-            self[i] = tmp;
+            self.swap(i, k);
         }
     }
 }

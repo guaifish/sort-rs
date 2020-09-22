@@ -3,6 +3,7 @@ pub trait InsertionSort<T: Ord + Copy> {
 }
 
 impl<T: Ord + Copy> InsertionSort<T> for [T] {
+    #[inline]
     fn insertion_sort(&mut self) {
         for i in 1..self.len() {
             let mut j = i;

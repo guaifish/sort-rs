@@ -3,6 +3,7 @@ pub trait QuickSort<T: Ord + Copy> {
 }
 
 impl<T: Ord + Copy> QuickSort<T> for [T] {
+    #[inline]
     fn quick_sort(&mut self) {
         let len = self.len();
         if len > 1 {

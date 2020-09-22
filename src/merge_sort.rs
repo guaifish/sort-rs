@@ -3,6 +3,7 @@ pub trait MergeSort<T: Ord + Copy> {
 }
 
 impl<T: Ord + Copy> MergeSort<T> for [T] {
+    #[inline]
     fn merge_sort(&mut self) {
         let len = self.len();
         if len > 1 {

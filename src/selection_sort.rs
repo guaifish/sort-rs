@@ -8,7 +8,7 @@ impl<T: Ord + Copy> SelectionSort<T> for [T] {
         for i in 0..self.len() {
             let mut k = i;
             for j in (i + 1)..self.len() {
-                if self[j] < self[k] {
+                if self[k] >= self[j] {
                     k = j;
                 }
             }

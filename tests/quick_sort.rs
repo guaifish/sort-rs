@@ -3,9 +3,9 @@ use sorted::QuickSort;
 
 #[test]
 fn test_quick_sort_vec() {
-    let mut v = vec![6, 5, 3, 1, 8, 7, 2, 4];
+    let mut v = vec![6, 5, 3, 1, 8, 7, 2, 4, 3, 6];
     v.quick_sort();
-    let expected = vec![1, 2, 3, 4, 5, 6, 7, 8];
+    let expected = vec![1, 2, 3, 3, 4, 5, 6, 6, 7, 8];
     assert_eq!(v, expected);
 }
 

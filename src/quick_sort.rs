@@ -16,9 +16,13 @@ impl<T: Ord + Copy> QuickSort<T> for [T] {
                 while l < r && self[l] <= self[0] {
                     l += 1;
                 }
-                self.swap(l, r);
+                if l < r {
+                    self.swap(l, r);
+                }
             }
-            self.swap(0, l);
+            if l > 0 {
+                self.swap(0, l);
+            }
             self[..l].quick_sort();
             self[(l + 1)..].quick_sort();
         }

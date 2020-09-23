@@ -1,4 +1,5 @@
 mod bubble_sort;
+mod bucket_sort;
 mod counting_sort;
 mod heap_sort;
 mod insertion_sort;

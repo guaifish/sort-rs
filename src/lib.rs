@@ -1,4 +1,5 @@
 mod bubble_sort;
+mod counting_sort;
 mod heap_sort;
 mod insertion_sort;
 mod merge_sort;
@@ -7,6 +8,7 @@ mod selection_sort;
 mod shell_sort;
 
 pub use bubble_sort::BubbleSort;
+pub use counting_sort::CountingSort;
 pub use heap_sort::HeapSort;
 pub use insertion_sort::InsertionSort;
 pub use merge_sort::MergeSort;

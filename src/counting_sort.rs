@@ -10,11 +10,11 @@ impl CountingSort<i32> for [i32] {
             bucket[(i - min) as usize] += 1;
         }
         let mut index = 0_usize;
-        for j in 0..bucket.len() {
-            while bucket[j] > 0 {
+        for (j, item) in bucket.iter_mut().enumerate() {
+            while *item > 0 {
                 self[index] = j as i32 + min;
                 index += 1;
-                bucket[j] -= 1;
+                *item -= 1;
             }
         }
     }
@@ -28,11 +28,11 @@ impl CountingSort<usize> for [usize] {
             bucket[i - min] += 1;
         }
         let mut index = 0_usize;
-        for j in 0..bucket.len() {
-            while bucket[j] > 0 {
+        for (j, item) in bucket.iter_mut().enumerate() {
+            while *item > 0 {
                 self[index] = j + min;
                 index += 1;
-                bucket[j] -= 1;
+                *item -= 1;
             }
         }
     }

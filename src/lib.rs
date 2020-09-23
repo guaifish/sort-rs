@@ -9,6 +9,7 @@ mod selection_sort;
 mod shell_sort;
 
 pub use bubble_sort::BubbleSort;
+pub use bucket_sort::BucketSort;
 pub use counting_sort::CountingSort;
 pub use heap_sort::HeapSort;
 pub use insertion_sort::InsertionSort;

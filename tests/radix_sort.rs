@@ -3,7 +3,7 @@ use sorted::RadixSort;
 
 #[test]
 fn test_radix_sort_vec() {
-    let mut v = vec![6, 5, 3, 1, 8, 7, 2, 4, 0, 6, 1];
+    let mut v: Vec<u32> = vec![6, 5, 3, 1, 8, 7, 2, 4, 0, 6, 1];
     v.radix_sort();
     let expected = vec![0, 1, 1, 2, 3, 4, 5, 6, 6, 7, 8];
     assert_eq!(v, expected);
@@ -16,7 +16,7 @@ fn test_radix_sort_vec() {
 
 #[test]
 fn test_radix_sort_array() {
-    let mut v = [6, 5, 3, 1, 8, 7, 2, 4, 0, 6, 1];
+    let mut v: [u16; 11] = [6, 5, 3, 1, 8, 7, 2, 4, 0, 6, 1];
     v.radix_sort();
     let expected = [0, 1, 1, 2, 3, 4, 5, 6, 6, 7, 8];
     assert_eq!(v, expected);

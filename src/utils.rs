@@ -42,7 +42,7 @@ pub fn get_digits(num: usize) -> usize {
     let mut digits = 1;
     loop {
         if num / 10_usize.pow(digits) == 0 {
-            break digits as usize
+            break digits as usize;
         } else {
             digits += 1;
         }
@@ -50,7 +50,8 @@ pub fn get_digits(num: usize) -> usize {
 }
 
 pub fn copy_slice<T: Copy>(slice: &mut [T], src: &[T], start: usize) {
-    // 保证不会超出索引范围
+    // 将 src 的数据复制到 slice 中, 从 start 位置开始
+    // 保证不会超出 slice 索引范围
     for (i, &item) in src.iter().enumerate() {
         slice[start + i] = item;
     }
@@ -76,4 +77,14 @@ fn test_get_digits() {
     assert_eq!(get_digits(3), 1);
     assert_eq!(get_digits(2378), 4);
     assert_eq!(get_digits(10_usize.pow(10)), 11);
+}
+
+#[test]
+fn test_copy_slice() {
+    let mut a = [1, 2, 3, 4, 5, 6];
+    copy_slice(&mut a, &[7, 8], 3);
+    assert_eq!(a, [1, 2, 3, 7, 8, 6]);
+
+    copy_slice(&mut a, &[0; 3], 1);
+    assert_eq!(a, [1, 0, 0, 0, 8, 6]);
 }

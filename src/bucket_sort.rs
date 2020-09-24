@@ -5,6 +5,7 @@ pub trait BucketSort<T> {
 }
 
 impl BucketSort<i32> for [i32] {
+    #[inline]
     fn bucket_sort(&mut self, bucket_size: usize) {
         let min = self.iter().min().unwrap();
         let max = self.iter().max().unwrap();
@@ -18,13 +19,14 @@ impl BucketSort<i32> for [i32] {
         for item in buckets.iter_mut() {
             item.insertion_sort();
             let l = item.len();
-            self[index..(index + l)].copy_from_slice(&item);
+            self[index..(index + l)].copy_from_slice(item);
             index += l;
         }
     }
 }
 
 impl BucketSort<usize> for [usize] {
+    #[inline]
     fn bucket_sort(&mut self, bucket_size: usize) {
         let min = self.iter().min().unwrap();
         let max = self.iter().max().unwrap();
@@ -38,7 +40,7 @@ impl BucketSort<usize> for [usize] {
         for item in buckets.iter_mut() {
             item.insertion_sort();
             let l = item.len();
-            self[index..(index + l)].copy_from_slice(&item);
+            self[index..(index + l)].copy_from_slice(item);
             index += l;
         }
     }

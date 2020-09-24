@@ -13,6 +13,7 @@ fn test_bucket_sort_vec() {
     let expected = vec![1, 2, 3, 4, 5, 6, 7, 8];
     assert_eq!(v, expected);
 }
+
 #[test]
 fn test_bucket_sort_array() {
     let mut v = [6, 5, 3, 1, 8, 7, 2, 4, -7, -10, 0, 6, 1];

@@ -41,16 +41,17 @@ impl<T: Ord + Copy> HeapSort<T> for [T] {
     #[inline]
     fn heap_sort(&mut self) {
         let len = self.len();
-        if len > 1 {
-            // 创建最大堆
-            self.build_heap();
+        if len <= 1 {
+            return;
+        }
+        // 创建最大堆
+        self.build_heap();
 
-            // 将最后一个值与堆顶的最大值交换, 然后对前面的值重新进行堆调整,
-            // 不断重复这一过程直至排序完毕
-            for i in (1..len).rev() {
-                self.swap(0, i);
-                self[0..i].heapify(0);
-            }
+        // 将最后一个值与堆顶的最大值交换, 然后对前面的值重新进行堆调整,
+        // 不断重复这一过程直至排序完毕
+        for i in (1..len).rev() {
+            self.swap(0, i);
+            self[0..i].heapify(0);
         }
     }
 }

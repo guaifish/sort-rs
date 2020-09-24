@@ -57,6 +57,18 @@ pub fn copy_slice<T: Copy>(slice: &mut [T], src: &[T], start: usize) {
     }
 }
 
+pub fn insert<T: Ord + Copy>(slice: &mut [T], i: usize, gap: usize) {
+    let tmp = slice[i];
+    let mut j = i;
+    while j >= gap && slice[j - gap] > tmp {
+        slice[j] = slice[j - gap];
+        j -= gap;
+    }
+    if j != i {
+        slice[j] = tmp;
+    }
+}
+
 #[test]
 fn test_min_max() {
     let [min, max] = min_max(&[2]);
@@ -87,4 +99,25 @@ fn test_copy_slice() {
 
     copy_slice(&mut a, &[0; 3], 1);
     assert_eq!(a, [1, 0, 0, 0, 8, 6]);
+}
+
+#[test]
+fn test_insert() {
+    let mut a = [1, 5, 2, 7, 4, 8, 3, 6];
+    let expect = [1, 2, 5, 7, 4, 8, 3, 6];
+    insert(&mut a, 2, 1);
+    assert_eq!(a, expect);
+
+    let expect = [1, 2, 4, 5, 7, 8, 3, 6];
+    insert(&mut a, 4, 1);
+    assert_eq!(a, expect);
+
+    let mut a = [1, 5, 2, 7, 4, 8, 3, 6];
+    let expect = [1, 5, 2, 7, 3, 8, 4, 6];
+    insert(&mut a, 6, 2);
+    assert_eq!(a, expect);
+
+    let expect = [1, 5, 2, 6, 3, 7, 4, 8];
+    insert(&mut a, 7, 2);
+    assert_eq!(a, expect);
 }

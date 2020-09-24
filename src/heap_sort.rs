@@ -25,7 +25,7 @@ impl<T: Ord + Copy> MaxHeap<T> for [T] {
             if r < len && self[r] > self[j] {
                 j = r;
             }
-            if j > i {
+            if j != i {
                 self.swap(i, j);
                 self.heapify(j);
             }

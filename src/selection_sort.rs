@@ -13,7 +13,7 @@ impl<T: Ord + Copy> SelectionSort<T> for [T] {
                     k = j;
                 }
             }
-            if i < k {
+            if i != k {
                 self.swap(i, k);
             }
         }

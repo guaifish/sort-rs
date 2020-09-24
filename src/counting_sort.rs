@@ -33,5 +33,13 @@ macro_rules! impl_counting_sort {
     };
 }
 
+impl_counting_sort!(i8);
+impl_counting_sort!(i16);
 impl_counting_sort!(i32);
+impl_counting_sort!(i64);
+impl_counting_sort!(isize);
+impl_counting_sort!(u8);
+impl_counting_sort!(u16);
+impl_counting_sort!(u32);
+impl_counting_sort!(u64);
 impl_counting_sort!(usize);

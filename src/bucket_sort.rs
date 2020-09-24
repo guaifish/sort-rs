@@ -41,5 +41,13 @@ macro_rules! impl_bucket_sort {
     };
 }
 
+impl_bucket_sort!(i8);
+impl_bucket_sort!(i16);
 impl_bucket_sort!(i32);
+impl_bucket_sort!(i64);
+impl_bucket_sort!(isize);
+impl_bucket_sort!(u8);
+impl_bucket_sort!(u16);
+impl_bucket_sort!(u32);
+impl_bucket_sort!(u64);
 impl_bucket_sort!(usize);

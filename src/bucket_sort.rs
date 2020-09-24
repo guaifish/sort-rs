@@ -15,26 +15,28 @@ macro_rules! impl_bucket_sort {
                 // 桶的数量
                 let bucket_count = (max - min) as usize / bucket_size + 1;
                 // 创建空桶
-                let mut buckets = vec![vec![]; bucket_count];
+                let mut buckets = vec![Vec::with_capacity(bucket_size); bucket_count];
 
                 // 将每个数据按照函数计算的结果放入对应的桶中
-                for item in self.iter() {
-                    let i = (item - min) as usize / bucket_size;
-                    buckets[i].push(*item);
+                for &value in self.iter() {
+                    let i = (value - min) as usize / bucket_size;
+                    buckets[i].push(value);
                 }
 
                 // 在每个桶内排序, 然后按桶的次序将数据放回数组
                 let mut index = 0; // 定位已经排好序的元素位置
-                for item in buckets.iter_mut() {
+                for bucket in buckets.iter_mut() {
                     // 这里桶的内部使用插入排序
-                    item.insertion_sort();
+                    bucket.insertion_sort();
 
                     // 将这个桶内的数据取回数组
-                    let item_len = item.len();
-                    for i in 0..item_len {
-                        self[index + i] = item[i];
+                    for (i, &value) in bucket.iter().enumerate() {
+                        self[index + i] = value;
                     }
-                    index += item_len;
+                    index += bucket.len();
+
+                    // 清空桶内数据
+                    bucket.clear();
                 }
             }
         }

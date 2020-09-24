@@ -5,6 +5,7 @@ trait MaxHeap<T: Ord + Copy> {
 
 impl<T: Ord + Copy> MaxHeap<T> for [T] {
     fn build_heap(&mut self) {
+        // 创建最大堆
         let len = self.len() / 2;
         for i in (0..=len).rev() {
             self.heapify(i);
@@ -12,6 +13,7 @@ impl<T: Ord + Copy> MaxHeap<T> for [T] {
     }
 
     fn heapify(&mut self, i: usize) {
+        // 堆调整
         let len = self.len();
         if len > 1 {
             let l = 2 * i + 1;
@@ -40,7 +42,11 @@ impl<T: Ord + Copy> HeapSort<T> for [T] {
     fn heap_sort(&mut self) {
         let len = self.len();
         if len > 1 {
+            // 创建最大堆
             self.build_heap();
+
+            // 将最后一个值与堆顶的最大值交换, 然后对前面的值重新进行堆调整,
+            // 不断重复这一过程直至排序完毕
             for i in (1..len).rev() {
                 self.swap(0, i);
                 self[0..i].heapify(0);

@@ -8,6 +8,7 @@ mod quick_sort;
 mod radix_sort;
 mod selection_sort;
 mod shell_sort;
+mod utils;
 
 pub use bubble_sort::BubbleSort;
 pub use bucket_sort::BucketSort;
